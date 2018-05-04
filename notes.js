@@ -32,7 +32,9 @@ let addNote = (title,body)=> {
     }
 }
 let getNote =(title)=> {
-    console.log("Getting the notes", title);
+    let notes = fetchNote();
+    const note = notes.find((note) => note.title === title);
+    return note;
 }
 
 let getAll=()=> {
@@ -46,11 +48,17 @@ let removeNote= (title)=> {
     return notes.length!==filteredNotes.length;
     
 }
-
+var logNote=(note)=> {
+    debugger;
+    console.log("------");
+    console.log(`Title: ${note.title}`);
+    console.log(`Body: ${note.body}`);
+}
 
 module.exports= {
     addNote,      // ES6 feature this means addNote:addNote
     getNote,
     getAll,
-    removeNote
+    removeNote,
+    logNote
 }
