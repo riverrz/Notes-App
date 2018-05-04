@@ -10,7 +10,6 @@ const fetchNote= ()=> {
 
 const saveNotes= (notes)=> {
     fs.writeFileSync('notes-data.json', JSON.stringify(notes));
-    console.log("Successfully added your note");
     
 }
 
@@ -29,6 +28,7 @@ let addNote = (title,body)=> {
     } else  {
         notes.push(note);
         saveNotes(notes);
+        return note;
     }
 }
 let getNote =(title)=> {
