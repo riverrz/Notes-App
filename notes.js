@@ -39,7 +39,11 @@ let getAll=()=> {
     console.log("Showing all notes");
 }
 let removeNote= (title)=> {
-    console.log("Removing note with title: ",title);
+    let notes = fetchNote();
+    let filteredNotes = notes.filter((note) => note.title !== title);
+    
+    saveNotes(filteredNotes);
+    return notes.length!==filteredNotes.length;
     
 }
 
