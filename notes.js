@@ -1,6 +1,6 @@
 const fs=require("fs");
 
-const fetchNote= ()=> {
+const fetchNotes= ()=> {
     try {
         return JSON.parse(fs.readFileSync('notes-data.json'));
     } catch (e) {
@@ -14,7 +14,7 @@ const saveNotes= (notes)=> {
 }
 
 let addNote = (title,body)=> {
-    var notes=fetchNote();
+    var notes=fetchNotes();
 
     var note = {
         title,
@@ -32,16 +32,19 @@ let addNote = (title,body)=> {
     }
 }
 let getNote =(title)=> {
-    let notes = fetchNote();
+    let notes = fetchNotes();
     const note = notes.find((note) => note.title === title);
     return note;
 }
 
 let getAll=()=> {
-    console.log("Showing all notes");
+    const notes = fetchNotes();
+    console.log(`Printing ${notes.length} note(s)`);
+    notes.forEach((note) => logNote(note));
+    
 }
 let removeNote= (title)=> {
-    let notes = fetchNote();
+    let notes = fetchNotes();
     let filteredNotes = notes.filter((note) => note.title !== title);
     
     saveNotes(filteredNotes);
@@ -49,7 +52,6 @@ let removeNote= (title)=> {
     
 }
 var logNote=(note)=> {
-    debugger;
     console.log("------");
     console.log(`Title: ${note.title}`);
     console.log(`Body: ${note.body}`);
